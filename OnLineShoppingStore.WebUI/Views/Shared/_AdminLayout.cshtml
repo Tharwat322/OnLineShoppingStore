@@ -1,0 +1,44 @@
+﻿@{ 
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>@ViewBag.Title</title>
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" type="text/css" />
+
+</head>
+<body>
+    <div class="container">
+
+
+        @{
+            var userName = HttpContext.Current.User.Identity.Name;
+
+            if (userName != "")
+            {
+                <h3>
+                    On Line Shoping Store
+                    <span class=" btn-info btn pull-right">
+                        @Html.ActionLink(HttpContext.Current.User.Identity.Name + "- Logout" ,"LogOut", "Account")
+                    </span>
+                </h3>
+                }
+            }
+
+            @if (TempData["message"] != null)
+            {
+                <div class=" alert alert-success">
+                    @TempData["message"]
+                </div>
+            }
+
+
+        
+        @RenderBody()
+    </div>
+</body>
+</html>
